@@ -23,7 +23,7 @@ public partial class MainViewModel : ObservableObject
     private string category = "課本";
 
     [ObservableProperty]
-    private decimal price;
+    private string priceText="";
 
     [ObservableProperty]
     private string searchText = "";
@@ -52,25 +52,32 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     public async Task AddProduct()
     {
+       
+        if (!decimal.TryParse(PriceText, out decimal finalPrice))
+        {
+            finalPrice = 0;
+        }
+
         var product = new Product
         {
-            Name = Title,
+            Name = Title, 
             Description = Description,
             Category = Category,
-            Price = Price,
+            Price = finalPrice, 
             IsSold = false
         };
 
+       
         await _productService.AddProduct(product);
-
+        
         Products.Add(product);
-
         FilterProducts();
 
+      
         Title = "";
         Description = "";
         Category = "課本";
-        Price = 0;
+        PriceText = ""; 
     }
 
     public async void LoadProducts()

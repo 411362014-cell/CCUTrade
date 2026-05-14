@@ -67,7 +67,7 @@
                                 <TextBlock
                                     FontSize="20"
                                     FontWeight="Bold"
-                                    Text="{Binding Title}" />
+                                    Text="{Binding name}" />
 
                                 <TextBlock
                                     Text="{Binding Description}" />
