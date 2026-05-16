@@ -1,9 +1,5 @@
 using Avalonia.Controls;
-using Avalonia.Controls;
-using CCUTrade.Data;
-using CCUTrade.Models;
-using CCUTrade.Models;
-using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 using CCUTrade.ViewModels; 
 
 namespace CCUTrade;
@@ -12,7 +8,7 @@ public partial class MainWindow : Window
 {
     public MainWindow()
     {
-        InitializeComponent();
+        AvaloniaXamlLoader.Load(this);
 
         DataContext = new MainViewModel();
     }

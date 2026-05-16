@@ -1,95 +1,84 @@
 <Window
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CCUTrade"
     x:Class="CCUTrade.MainWindow"
     Width="900"
     Height="700"
     Title="CCUTrade">
 
-    <ScrollViewer>
+	<ScrollViewer>
+		<StackPanel Margin="20" Spacing="10">
 
-        <StackPanel Margin="20" Spacing="10">
-
-            <TextBlock
+			<TextBlock
                 FontSize="28"
                 FontWeight="Bold"
                 Text="CCU 二手交易平台" />
 
-            <TextBox
+			<TextBox
                 Watermark="商品名稱"
                 Text="{Binding Title}" />
 
-            <TextBox
+			<TextBox
                 Watermark="商品描述"
                 Text="{Binding Description}" />
 
-            <ComboBox
+			<ComboBox
                 ItemsSource="{Binding Categories}"
                 SelectedItem="{Binding Category}" />
 
-            <TextBox
+			<TextBox
                 Watermark="價格"
-                Text="{Binding Price}" />
+                Text="{Binding PriceText}" />
 
-            <Button
+			<Button
                 Content="新增商品"
                 Command="{Binding AddProductCommand}" />
 
-            <TextBlock
+			<TextBlock
                 Margin="0,20,0,0"
                 FontSize="20"
                 FontWeight="Bold"
                 Text="搜尋商品" />
 
-            <TextBox
+			<TextBox
                 Watermark="輸入關鍵字搜尋"
                 Text="{Binding SearchText}" />
 
-            <ComboBox
+			<ComboBox
                 ItemsSource="{Binding Categories}"
                 SelectedItem="{Binding SelectedCategory}" />
 
-            <Separator />
+			<Separator />
 
-            <ItemsControl ItemsSource="{Binding FilteredProducts}">
-
-                <ItemsControl.ItemTemplate>
-
-                    <DataTemplate>
-
-                        <Border
+			<ItemsControl ItemsSource="{Binding FilteredProducts}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Border
                             Padding="10"
                             Margin="0,0,0,10"
                             BorderThickness="1">
-
-                            <StackPanel Spacing="5">
-
-                                <TextBlock
+							<StackPanel Spacing="5">
+								<TextBlock
                                     FontSize="20"
                                     FontWeight="Bold"
-                                    Text="{Binding name}" />
-
-                                <TextBlock
+                                    Text="{Binding Name}" />
+								<TextBlock
                                     Text="{Binding Description}" />
-
-                                <TextBlock
+								<TextBlock
                                     Text="{Binding Category}" />
-
-                                <TextBlock
+								<TextBlock
                                     Text="{Binding Price}" />
+							</StackPanel>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
 
-                            </StackPanel>
+			<Separator Margin="0,20"/>
 
-                        </Border>
+			<local:MarketView DataContext="{Binding MarketViewModel}" />
 
-                    </DataTemplate>
-
-                </ItemsControl.ItemTemplate>
-
-            </ItemsControl>
-
-        </StackPanel>
-
-    </ScrollViewer>
-
+		</StackPanel>
+	</ScrollViewer>
 </Window>

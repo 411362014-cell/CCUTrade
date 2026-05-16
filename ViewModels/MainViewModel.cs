@@ -11,6 +11,10 @@ namespace CCUTrade.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
+    
+    public MarketViewModel MarketViewModel { get; } = new MarketViewModel();
+
+   
     private readonly ProductService _productService = new();
 
     [ObservableProperty]
@@ -23,7 +27,7 @@ public partial class MainViewModel : ObservableObject
     private string category = "課本";
 
     [ObservableProperty]
-    private string priceText="";
+    private string priceText = "";
 
     [ObservableProperty]
     private string searchText = "";
@@ -52,7 +56,6 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     public async Task AddProduct()
     {
-       
         if (!decimal.TryParse(PriceText, out decimal finalPrice))
         {
             finalPrice = 0;
@@ -60,24 +63,21 @@ public partial class MainViewModel : ObservableObject
 
         var product = new Product
         {
-            Name = Title, 
-            Description = Description,
+            Name = Title,
             Category = Category,
-            Price = finalPrice, 
-            IsSold = false
+            Price = finalPrice,
+            Tag = "新上架"
         };
 
-       
         await _productService.AddProduct(product);
-        
+
         Products.Add(product);
         FilterProducts();
 
-      
         Title = "";
         Description = "";
         Category = "課本";
-        PriceText = ""; 
+        PriceText = "";
     }
 
     public async void LoadProducts()
@@ -112,8 +112,7 @@ public partial class MainViewModel : ObservableObject
         {
             bool matchSearch =
                 string.IsNullOrWhiteSpace(SearchText) ||
-                p.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
-                p.Description.Contains(SearchText, StringComparison.OrdinalIgnoreCase);
+                p.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase);
 
             bool matchCategory =
                 SelectedCategory == "全部" ||

@@ -1,0 +1,94 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CCUTrade.ViewModels"
+             x:Class="CCUTrade.MarketView">
+
+	<Grid RowDefinitions="Auto, *">
+		<TextBlock Grid.Row="0" Text="CCU 校園市集專區" FontSize="24" FontWeight="Bold" Margin="20,10"/>
+
+		<TabControl Grid.Row="1" Margin="10">
+
+			<TabItem Header="🎓 畢業出清專區">
+				<ScrollViewer>
+					<ItemsControl ItemsSource="{Binding GraduationItems}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel Margin="10"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="10" Width="180" Height="220" Background="White" Padding="10">
+									<StackPanel Spacing="5">
+										<Rectangle Height="100" Fill="DarkGray" RadiusX="5" RadiusY="5"/>
+										<TextBlock Text="{Binding Tag}" FontSize="12" Foreground="DimGray" Margin="0,5,0,0"/>
+										<TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14" Margin="0,5"/>
+										<StackPanel Orientation="Horizontal">
+											<TextBlock Text="$" Foreground="Red" FontWeight="Bold"/>
+											<TextBlock Text="{Binding Price}" Foreground="Red" FontWeight="Bold"/>
+										</StackPanel>
+									</StackPanel>
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</TabItem>
+
+			<TabItem Header="🔥 推薦好物">
+				<ScrollViewer>
+					<ItemsControl ItemsSource="{Binding RecommendedItems}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel Margin="10"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="10" Width="180" Height="220" Background="White" Padding="10">
+									<StackPanel Spacing="5">
+										<Rectangle Height="100" Fill="DarkGray" RadiusX="5" RadiusY="5"/>
+										<TextBlock Text="{Binding Tag}" FontSize="12" Foreground="DimGray" Margin="0,5,0,0"/>
+										<TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14" Margin="0,5"/>
+										<StackPanel Orientation="Horizontal">
+											<TextBlock Text="$" Foreground="Red" FontWeight="Bold"/>
+											<TextBlock Text="{Binding Price}" Foreground="Red" FontWeight="Bold"/>
+										</StackPanel>
+									</StackPanel>
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</TabItem>
+
+			<TabItem Header="📦 宿舍打包用品">
+				<ScrollViewer>
+					<ItemsControl ItemsSource="{Binding DormItems}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel Margin="10"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="10" Width="180" Height="220" Background="White" Padding="10">
+									<StackPanel Spacing="5">
+										<Rectangle Height="100" Fill="DarkGray" RadiusX="5" RadiusY="5"/>
+										<TextBlock Text="{Binding Tag}" FontSize="12" Foreground="DimGray" Margin="0,5,0,0"/>
+										<TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14" Margin="0,5"/>
+										<StackPanel Orientation="Horizontal">
+											<TextBlock Text="$" Foreground="Red" FontWeight="Bold"/>
+											<TextBlock Text="{Binding Price}" Foreground="Red" FontWeight="Bold"/>
+										</StackPanel>
+									</StackPanel>
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</TabItem>
+
+		</TabControl>
+	</Grid>
+</UserControl>

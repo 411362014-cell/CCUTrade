@@ -17,4 +17,6 @@ public class Product
     public bool IsSold { get; set; }
 
     public DateTime CreatedAt { get; set; }
+
+    public string Tag { get; set; }
 }
